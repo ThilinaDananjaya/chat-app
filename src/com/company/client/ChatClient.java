@@ -1,6 +1,7 @@
 package com.company.client;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class ChatClient {
 
@@ -27,7 +28,14 @@ public class ChatClient {
         client.sendMessage("How are you?");
         client.sendMessage("I'm fine.");
         client.sendMessage("Thank you.");
-        client.sendMessage("exit");
+
+        Scanner scanner = new Scanner(System.in);
+        String clientMessage = "";
+
+        while (clientMessage != "exit") {
+            clientMessage = scanner.nextLine();
+            client.sendMessage(clientMessage);
+        }
 
         System.out.println("Client finished the execution...");
 

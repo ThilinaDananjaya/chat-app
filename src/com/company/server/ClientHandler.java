@@ -2,6 +2,7 @@ package com.company.server;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class ClientHandler implements Runnable{
 
@@ -16,7 +17,7 @@ public class ClientHandler implements Runnable{
     public void run() {
 
         try {
-            Thread.sleep(10000); //wait for 20 seconds before executing the rest of the code
+            Thread.sleep(5000); //wait for 5 seconds before executing the rest of the code
             //Receive data
             InputStream inputStream = client.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -29,6 +30,8 @@ public class ClientHandler implements Runnable{
                 System.out.println("Client says: " + inputData);
 
                 //send data to client
+                Scanner scanner = new Scanner(System.in);
+                String serverMessage = "";
 
                 //also you can use scanner class to capture input
                 switch (inputData) {
@@ -45,7 +48,10 @@ public class ClientHandler implements Runnable{
                         outputStream.writeBytes("You are welcome \n");
                         break;
                     default:
-                        outputStream.writeBytes("I didn't understand that. \n");
+                        while (serverMessage != "exit") {
+                            serverMessage = scanner.nextLine();
+                            outputStream.writeBytes(serverMessage + "\n");
+                        }
                 }
 
                 if (inputData.equals("exit")) {
