@@ -29,10 +29,10 @@ public class ClientHandler implements Runnable{
 
                 System.out.println("Client says: " + inputData);
 
-                //send data to client
                 Scanner scanner = new Scanner(System.in);
                 String serverMessage = "";
 
+                //send data to client
                 //also you can use scanner class to capture input
                 switch (inputData) {
                     case "Hello from the client.":
