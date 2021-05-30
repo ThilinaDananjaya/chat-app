@@ -49,8 +49,11 @@ public class ClientHandler implements Runnable{
                         break;
                     default:
                         while (serverMessage != "exit") {
+                            System.out.println("Client says: " + inputData);
+                            System.out.println("Server says: ");
                             serverMessage = scanner.nextLine();
                             outputStream.writeBytes(serverMessage + "\n");
+                            inputData = bufferedReader.readLine();
                         }
                 }
 
